@@ -1,5 +1,5 @@
-# AudioSpeeder
-AudioSpeeder is a tool that allows you to adjust the playback speed of a video based on the volume of its audio. 
+# VideoCondenser
+VideoCondenser is a tool that allows you to adjust the playback speed of a video based on the volume of its audio. 
 The intended usage is to speed up long lecture-type videos while retaining clarity and content.
 
 ## Features
@@ -20,16 +20,16 @@ To use AudioSpeeder, follow these steps:
 ## Usage
 Standard Lecture Shortening
 ```bash
-python audiospeeder.py input_video.mp4
+python videocondenser.py input_video.mp4
 ```
 
 Completely cutting during silence
 ```bash
-python audiospeeder.py input_video.mp4 --loud_speed 10000
+python videocondenser.py input_video.mp4 --loud_speed 10000
 ```
 
 Slow down content while speeding up breaks
 ```bash
-python audiospeeder.py input_video.mp4 --quiet_speed 0.75
+python videocondenser.py input_video.mp4 --quiet_speed 0.75
 ```
 and many more!
