@@ -33,3 +33,7 @@ Slow down content while speeding up breaks
 python videocondenser.py input_video.mp4 --quiet_speed 0.75
 ```
 and many more!
+
+## License
+
+This project is licensed under the [GNU General Public License (GPL-3.0)](LICENSE.txt).
