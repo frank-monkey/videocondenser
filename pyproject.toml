@@ -1,13 +1,17 @@
+[tool.poetry]
 name = "videocondenser"
 version = "0.1"
 description = "A tool that condenses videos by adjusting playback speed based on volume."
 authors = ["Frank Sacco <franka25sacco@gmail.com>"]
-license = "GPL"
+license = "GPL-3.0-or-later"
 readme = "README.md"
+
+[tool.poetry.urls]
+Repository = "https://github.com/frank-monkey/videocondenser"
+
+[tool.poetry.dependencies]
 python = "^3.11"
 
-[project.urls]
-"Homepage" = "https://github.com/frank-monkey/videocondenser"
-
 [build-system]
-requires = ["numpy", "audiotsm", "scipy"]
+requires = ["poetry-core", "numpy", "audiotsm", "scipy"]
+build-backend = "poetry.core.masonry.api"

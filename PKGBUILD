@@ -1,7 +1,7 @@
 # Maintainer: Frank Sacco <franka25sacco at gm@il dot com>
 
 pkgname=videocondenser-git
-pkgver=0.1
+pkgver=r7.57753b0
 pkgrel=1
 pkgdesc="A tool that condenses videos by adjusting playback speed based on volume."
 arch=('x86_64')
@@ -15,6 +15,7 @@ depends=(
     'ffmpeg'
 )
 makedepends=(
+    'python-poetry-core'
     'python-build'
     'python-installer'
     'python-wheel'
@@ -24,14 +25,13 @@ source=("${pkgname}::git+https://github.com/frank-monkey/videocondenser.git")
 sha256sums=('SKIP')
 
 pkgver() {
-  cd "${pkgname}"
-  git describe
+    cd "${pkgname}"
+    printf "r%s.%s" "$(git rev-list --count HEAD)" "$(git rev-parse --short=7 HEAD)"
 }
 
 build() {
     cd "${pkgname}"
     python -m build --wheel --no-isolation
-    make
 }
 
 package() {
