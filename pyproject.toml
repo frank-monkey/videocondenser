@@ -1,0 +1,13 @@
+name = "videocondenser"
+version = "0.1"
+description = "A tool that condenses videos by adjusting playback speed based on volume."
+authors = ["Frank Sacco <franka25sacco@gmail.com>"]
+license = "GPL"
+readme = "README.md"
+python = "^3.11"
+
+[project.urls]
+"Homepage" = "https://github.com/frank-monkey/videocondenser"
+
+[build-system]
+requires = ["numpy", "audiotsm", "scipy"]
