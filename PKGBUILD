@@ -32,6 +32,7 @@ pkgver() {
 build() {
     cd "${pkgname}"
     python -m build --wheel --no-isolation
+    install -Dm755 videocondenser "$pkgdir/usr/bin/videocondenser"
 }
 
 package() {
