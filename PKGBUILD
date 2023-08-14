@@ -1,7 +1,7 @@
 # Maintainer: Frank Sacco <franka25sacco at gm@il dot com>
 
 pkgname=videocondenser-git
-pkgver=r8.94a4529
+pkgver=r10.15c4c16
 pkgrel=1
 pkgdesc="A tool that condenses videos by adjusting playback speed based on volume."
 arch=('x86_64')
@@ -32,10 +32,11 @@ pkgver() {
 build() {
     cd "${pkgname}"
     python -m build --wheel --no-isolation
-    install -Dm755 videocondenser "$pkgdir/usr/bin/videocondenser"
 }
 
 package() {
     cd "${pkgname}"
     python -m installer --destdir="$pkgdir" dist/*.whl
+    install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+    install -Dm644 README.md "$pkgdir/usr/share/doc/$pkgname/README.md"
 }
