@@ -1,7 +1,7 @@
 # Maintainer: Frank Sacco <franka25sacco at gm@il dot com>
 
 pkgname=videocondenser-git
-pkgver=r12.e0b6db6
+pkgver=r13.29ae829
 pkgrel=1
 pkgdesc="A tool that condenses videos by adjusting playback speed based on volume."
 arch=('x86_64')

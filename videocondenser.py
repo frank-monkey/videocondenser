@@ -128,7 +128,7 @@ def process_video(input_file, output_file, loud_threshold, loud_speed, quiet_spe
         a_stream = ffmpeg.input(os.path.join(temp_folder, "audio_new.wav"))
         ffmpeg.output(v_stream, a_stream, output_file, strict="-2", loglevel="error").run() # TODO Make into 1 command?
 
-if __name__ == "__main__":
+def main():
     parser = argparse.ArgumentParser(description='Modify a video file to adjust playback speed based on volume.')
     parser.add_argument('input_file', type=str, help='Input video file to be modified.')
     parser.add_argument('--output_file', type=str, default="", help="Specify the output file name.")
@@ -145,3 +145,6 @@ if __name__ == "__main__":
         kwargs['frame_rate'] = get_frame_rate(kwargs['input_file'])
 
     process_video(**kwargs)
+
+if __name__ == "__main__":
+    main()
