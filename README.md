@@ -45,9 +45,13 @@ and many more!
 
 ## Showcase Videos
 Before:
+
 https://github.com/frank-monkey/videocondenser/assets/86938002/1cd11268-52c1-4689-ae9f-d117a797cdfd
+
 After:
+
 https://github.com/frank-monkey/videocondenser/assets/86938002/314ff9a4-80e9-4e06-b895-2b3364814d1a
+
 (Original video [here](https://youtu.be/jANZxzetPaQ) Courtesy of MIT OCW)
 
 
