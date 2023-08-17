@@ -1,4 +1,5 @@
 # VideoCondenser
+
 VideoCondenser is a tool that allows you to adjust the playback speed of a video based on the volume of its audio. 
 The intended usage is to speed up long lecture-type videos while retaining clarity and content.
 
@@ -9,20 +10,24 @@ The intended usage is to speed up long lecture-type videos while retaining clari
 
 ## Installation
 
-Arch LinuxPackage
+pip
+```
+pip install videocondenser
+```
+
+Arch Linux Package Manager
 ```
 pacman -Syy videocondenser-git
 ```
 
-macOS packages and Windows distribution coming soon.
-
-To run AudioSpeeder manually:
+To install AudioSpeeder manually:
 
 1. Clone this repository to your local machine.
 2. Install the required dependencies (Python and assorted packages, Ffmpeg).
 3. Run the script using the provided command-line arguments.
 
 ## Usage
+
 Standard Lecture Shortening
 ```bash
 python videocondenser.py input_video.mp4
@@ -44,6 +49,7 @@ python videocondenser.py input_video.mp4 --quiet_speed 4 --loud_speed 0.75
 and many more!
 
 ## Showcase Videos
+
 Before:
 
 https://github.com/frank-monkey/videocondenser/assets/86938002/1cd11268-52c1-4689-ae9f-d117a797cdfd
