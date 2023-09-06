@@ -41,6 +41,13 @@ def copy_frame(input_frame : int, output_frame : int, temp_folder):
     copyfile(src, dst)
     return True
 
+# shortcircuiting logic for finding loud audio frames in video frames
+def find_loud_frame(audio_frames):
+    for frame in audio_frames:
+        if frame == 1:
+            return 1
+    return 0
+
 def input_to_output_filename(filename):
     dot_index = filename.rfind(".")
     return f"{filename[:dot_index]}_ALTERED{filename[dot_index:]}"
@@ -78,7 +85,7 @@ def process_video(input_file, output_file, loud_threshold, loud_speed, quiet_spe
         for i in range(1, audio_frame_length):
             start = max(0, i - FRAME_MARGIN)
             end = min(audio_frame_length, i + 1 + FRAME_MARGIN)
-            include_frame[i] = int(np.max(loud_audio_frame[start:end])) # np.max is inefficient, make smtg that shortcircuits TODO
+            include_frame[i] = find_loud_frame(loud_audio_frame[start:end])
             if include_frame[i] != include_frame[i - 1]:
                 chunks.append(AudioChunk(chunks[-1].end_index, i, include_frame[i - 1]))
 
