@@ -45,8 +45,12 @@ def input_to_output_filename(filename):
     dot_index = filename.rfind(".")
     return f"{filename[:dot_index]}_ALTERED{filename[dot_index:]}"
 
-def process_video(input_file, output_file, loud_threshold, loud_speed, quiet_speed, frame_rate):
+def process_video(input_file, output_file, loud_threshold, loud_speed, quiet_speed, frame_rate, verbose):
     with tempfile.TemporaryDirectory() as temp_folder:
+        if(verbose):
+            print(f'output file name: {output_file}')
+            print(f'framerate: {frame_rate}')
+
         new_speed = [quiet_speed, loud_speed]
         stream = ffmpeg.input(input_file)
         ffmpeg.output(stream, os.path.join(temp_folder, "frame%09d.jpg"), qscale=FRAME_QUALITY, loglevel = "error").run() # Use -q:a or q:v
@@ -80,6 +84,18 @@ def process_video(input_file, output_file, loud_threshold, loud_speed, quiet_spe
 
         chunks.append(AudioChunk(chunks[-1].end_index, audio_frame_length, include_frame[-1]))
         chunks.pop(0)
+
+        if(verbose):
+            # Estimated length is higher than actual length due to some small chunks being cut
+            estimated_frame_length = 0
+            for chunk in chunks:
+                estimated_frame_length += (chunk.end_index - chunk.start_index) / new_speed[chunk.is_loud]
+
+            estimated_frame_length = math.ceil(estimated_frame_length / frame_rate)
+            estimated_minutes = int(estimated_frame_length // 60)
+            estimated_seconds = int(estimated_frame_length % 60)
+
+            print(f"estimated video length: {estimated_minutes}:{estimated_seconds}")
 
         output_audio = np.zeros((0, audio_data.shape[1]))
         output_ptr = 0
@@ -136,6 +152,7 @@ def main():
     parser.add_argument('--loud_speed', type=float, default=1.00, help="The playback speed for frames with audio above the threshold.")
     parser.add_argument('--quiet_speed', type=float, default=5.00, help="The playback speed for audio below the threshold.")
     parser.add_argument('--frame_rate', type=int, help="The frame rate of the input and output videos. If not provided, it will be found automatically, or default to 30 frames per second.")
+    parser.add_argument('--verbose', action='store_true', help='Print more data')
 
     kwargs = vars(parser.parse_args())
 
