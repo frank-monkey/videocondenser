@@ -93,7 +93,7 @@ def process_video(input_file, output_file, loud_threshold, loud_speed, quiet_spe
         chunks.pop(0)
 
         if(verbose):
-            # Estimated length is higher than actual length due to some small chunks being cut
+            # Estimated length is greater than actual length due to some small chunks being cut
             estimated_frame_length = 0
             for chunk in chunks:
                 estimated_frame_length += (chunk.end_index - chunk.start_index) / new_speed[chunk.is_loud]
@@ -145,11 +145,10 @@ def process_video(input_file, output_file, loud_threshold, loud_speed, quiet_spe
             
             output_ptr = end_ptr
 
-        wavfile.write(os.path.join(temp_folder, "audio_new.wav"), SAMPLE_RATE, output_audio) # make it pipe directly into a_stream? TODO
-
-        v_stream = ffmpeg.input(os.path.join(temp_folder, "new_frame%09d.jpg"), framerate=frame_rate)
-        a_stream = ffmpeg.input(os.path.join(temp_folder, "audio_new.wav"))
-        ffmpeg.output(v_stream, a_stream, output_file, strict="-2", loglevel="error").run() # TODO Make into 1 command?
+        audio_path = os.path.join(temp_folder, "audio_new.wav")
+        frame_path = os.path.join(temp_folder, "new_frame%09d.jpg")
+        wavfile.write(audio_path, SAMPLE_RATE, output_audio)
+        ffmpeg.output(ffmpeg.input(frame_path, framerate=frame_rate), ffmpeg.input(audio_path), output_file, strict="-2", loglevel="error").run()
 
 def main():
     parser = argparse.ArgumentParser(description='Modify a video file to adjust playback speed based on volume.')
