@@ -3,6 +3,9 @@
 VideoCondenser is a tool that allows you to adjust the playback speed of a video based on the volume of its audio. 
 The intended usage is to speed up long lecture-type videos while retaining clarity and content.
 
+## Improve Efficiency
+Based on sample data from MIT OCW, using VideoCondenser results in an average of a 31% decrease in time spent watching videos, with no loss of content. For a detailed explanation of the math behind this, please refer to [this](https://pastebin.com/hgD7zatj) Pastebin link.
+
 ## Features
 
 - Dynamically adjust video playback speed based on audio volume levels.
